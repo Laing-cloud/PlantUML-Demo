@@ -1,0 +1,26 @@
+
+@startuml c4-context-demo
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+' Add legend
+LAYOUT_WITH_LEGEND() 
+' linetype
+skinparam linetype ortho
+
+' Entitys
+Person('Team','Team')
+System_Boundary('InternalBoundary','Internal Boundary',) { 
+System('System','Internal System','Some description')
+SystemDb('InternalDb','Internal db')
+}
+System_Ext('SystemExt','External System','Some description')
+SystemDb_Ext('ExternalDb','External db')
+
+' Relationships
+Team -- System : Add relationship label
+Team --> SystemExt
+
+SystemExt ---> ExternalDb
+System -left- InternalDb
+
+@enduml
